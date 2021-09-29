@@ -1,12 +1,14 @@
 package com.bridgelabz;
 
 import javax.xml.crypto.Data;
+import java.util.Scanner;
 
 /* linked list learing problem
  * create a node class and perform compute on the linked list
- * create a linked list and search a given node
+ * create a linked list and put the newnode after given position in the linked list.
  */
 public class DataStructureLinkedList {
+    Scanner scanner = new Scanner(System.in);
     static Node head;
     //create a node for the linked list
     static class Node{
@@ -32,19 +34,20 @@ public class DataStructureLinkedList {
             last.next = newNode;
         }
     }
-    //create a search method to give the data
-    public void searchNode(int data){
-        Node node = head;
-        int length=0;
-        while(node.data != data) {
-            node = node.next;
-            length++;
+    //create a method to insert neNode after certain position in the linked list
+    public void searchInsertNode(int data) {
+        Node ptr = head;
+        System.out.println("Enter the data need to add");
+        Node newNode = new Node(scanner.nextInt());
+        //ptr traverse till given node data after that need to inser the newnode in the linkedlist
+        while(ptr.data != data)
+        {
+            ptr = ptr.next;
         }
-        if(node.data == data){
-            System.out.println("node"+node.data+"present position"+length);
-        }
+        //newNode point to ptr.next
+        newNode.next = ptr.next;
+        ptr.next = newNode;           //ptr.next now point to the newnode
     }
-
     //display the data to linked list
     public static void display(){
         if(head == null){
@@ -68,8 +71,8 @@ public class DataStructureLinkedList {
         linkedList.addNode(70);
         display();
         System.out.println();
-        linkedList.searchNode(30);
-
+        linkedList.searchInsertNode(30);
+        display();
 
     }
 }
