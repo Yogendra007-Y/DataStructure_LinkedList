@@ -4,7 +4,7 @@ import javax.xml.crypto.Data;
 
 /* linked list learing problem
  * create a node class and perform compute on the linked list
- * create a linked list and pop the tail node
+ * create a linked list and search a given node
  */
 public class DataStructureLinkedList {
     static Node head;
@@ -32,14 +32,17 @@ public class DataStructureLinkedList {
             last.next = newNode;
         }
     }
-    //create pop method make second last node tail node
-    public  void popLastNode(){
+    //create a search method to give the data
+    public void searchNode(int data){
         Node node = head;
-        Node tail = head;
-        while( tail.next.next != null)
-            tail = tail.next;
-        tail.next = null;
-
+        int length=0;
+        while(node.data != data) {
+            node = node.next;
+            length++;
+        }
+        if(node.data == data){
+            System.out.println("node"+node.data+"present position"+length);
+        }
     }
 
     //display the data to linked list
@@ -64,10 +67,8 @@ public class DataStructureLinkedList {
         linkedList.addNode(30);
         linkedList.addNode(70);
         display();
-        System.out.println("linked list data");
-        //pop method point the next node
-        linkedList.popLastNode();
-        display();
+        System.out.println();
+        linkedList.searchNode(30);
 
 
     }
